@@ -5,6 +5,20 @@ import { ReactComponent as FacebookLogoSVG } from "../../assets/facebook.svg";
 import { ReactComponent as InstagramLogoSVG } from "../../assets/instagram.svg";
 import { ReactComponent as TwitterLogoSVG } from "../../assets/twitter.svg";
 import { ReactComponent as YoutubeLogoSVG } from "../../assets/youtube.svg";
+import * as React from 'react';
+import {useState} from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+
+
 
 //массив данных ссылок
 const swLinks = [
@@ -31,6 +45,13 @@ const swLinks = [
 ];
 
 export const Header = ({ fan }) => {
+  const [search,setSearch]=useState("");
+
+
+
+  const handleSearch=(value)=>{
+    setSearch(value);
+  }
   return (
     <header>
       <div className="links-layout">
@@ -50,8 +71,13 @@ export const Header = ({ fan }) => {
       <StarWarsLogoSVG />
       <div className="search-layout">
         <IconSearchSVG className="search-icon" />
-        <input placeholder="Search Star Wars" type="text" />
-        <div style={{ color: "white", paddingTop: "1rem" }}>
+        <ThemeProvider theme={darkTheme}>
+          <TextField id="outlined-search" label="Search" type="search" class="search" 
+        onChange={(e)=>handleSearch(e.target.value)}/>
+        
+        </ThemeProvider>
+        
+         <div style={{ color: "white", paddingTop: "1rem" }}>
           I am fan of: {fan}
         </div>
       </div>

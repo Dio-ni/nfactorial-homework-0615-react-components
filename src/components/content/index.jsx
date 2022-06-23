@@ -17,6 +17,7 @@ export const Content = ({ handleCreateFan }) => {
 
   return (
     <div className="content-layout">
+      
       <select
         value={selector}
         placeholder="Choose your path"
@@ -35,6 +36,13 @@ export const Content = ({ handleCreateFan }) => {
             <ItemSpisok>birthday: {character.birth_year}</ItemSpisok>
           </ItemLists>
         ))}
+        {selector === "Starships" &&
+        swStarships.map((starship) => (
+          <ItemLists key={starship.name} item={starship} type="starships">
+            <ItemSpisok>manufacturer: {starship.manufacturer}</ItemSpisok>
+            <ItemSpisok>starship class: {starship.starship_class}</ItemSpisok>
+          </ItemLists>
+        ))}
 
       {selector === "Planets" &&
         swPlanets.map((planet) => (
@@ -43,6 +51,8 @@ export const Content = ({ handleCreateFan }) => {
             <ItemSpisok>Orbital Period: {planet.orbital_period}</ItemSpisok>
           </ItemLists>
         ))}
+
+        
     </div>
   );
 };
